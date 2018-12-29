@@ -40,3 +40,11 @@ Fields (or columns):
 
 ##### map icon source
 [Numbered markers](https://mapicons.mapsmarker.com/numbers-letters/numbers/?style=white), Teapot or [teahouse](https://mapicons.mapsmarker.com/markers/restaurants-bars/bars/tea-house/?custom_color=9ea2a3).
+
+
+#### Road Map
+- save user IPs and Geolocation then display on Google Map
+- Display AtHome Geolocations as a marker (opaque green dot)
+- Allow uer to create geolocoation markers (opaque grey dot)
+- Allow user to toggle markers from grey to green
+- multi-unit marker with info window to record AtHome status for housing unit.
