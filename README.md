@@ -13,7 +13,7 @@
 ##### features.php
 Retrieves collection of features for the map data layer
 
-Example google map: <https://www.google.com.au/maps/d/u/0/edit?mid=1ctiAekzON8MIwcAOkgkZzQ1SjJRIZtA5&ll=-33.78296625339272%2C151.271711854415&z=17>
+[Example google map](https://www.google.com.au/maps/d/u/0/edit?mid=1ctiAekzON8MIwcAOkgkZzQ1SjJRIZtA5&ll=-33.78296625339272%2C151.271711854415&z=17)
 or [https://drive.google.com/open?id=1ctiAekzON8MIwcAOkgkZzQ1SjJRIZtA5&usp=sharing]
 4 features:
 - Block 1
@@ -22,7 +22,10 @@ or [https://drive.google.com/open?id=1ctiAekzON8MIwcAOkgkZzQ1SjJRIZtA5&usp=shari
 - Block 2
 
 
-Test URL: <https://qc.r2labs.com/ah-map/features.php?map=19>
+[Test URL](https://qc.r2labs.com/ah-map/features.php?map=19)
+
+
+
 
 ##### post.php
 create new feature
@@ -33,10 +36,20 @@ lat
 lon
 Test URL: [https://qc.r2labs.com/ah-map/post.php]
 
+
+
+
+
 ##### data.json
 Example Feature collection in GeoJsSON
 Test URL: [https://qc.r2labs.com/ah-map/data.json]
 Tested using [http://geojsonlint.com]
+
+
+
+
+
+
 
 ##### Filemaker Table: MapFeature
 - id
@@ -45,7 +58,9 @@ Tested using [http://geojsonlint.com]
 - label
 - mapNumber
 
-##### map icon source
-Numbered markers [https://mapicons.mapsmarker.com/numbers-letters/numbers/?style=white]
 
-Teapot or teahouse [https://mapicons.mapsmarker.com/markers/restaurants-bars/bars/tea-house/?custom_color=9ea2a3]
+
+
+##### map icon source
+[Numbered markers](https://mapicons.mapsmarker.com/numbers-letters/numbers/?style=white)
+Teapot or [teahouse](https://mapicons.mapsmarker.com/markers/restaurants-bars/bars/tea-house/?custom_color=9ea2a3)
