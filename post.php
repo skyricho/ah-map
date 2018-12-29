@@ -2,20 +2,20 @@
 include ("dbaccess.php");
 
 if (isset($_POST['submit'])) {
-	$request = $fm->createRecord('Marker');
+	$request = $fm->createRecord('MapFeature');
 	$request->setField('mapNumber', $_POST['mapNumber']);
 	$request->setField('label', $_POST['label']);
-	$request->setField('type', $_POST['type']);
-	$request->setField('lat', $_POST['lat']);
-	$request->setField('lng', $_POST['lng']);
+  $request->setField('lat', $_POST['lat']);
+	$request->setField('lon', $_POST['lon']);
 	$request->setField('date', date('n/j/Y'));
 	$result=$request->commit();
 
 	$request = $request->getRecordID();
-	$record = $fm->getRecordByID('Marker', $request);
+	$record = $fm->getRecordByID('MapFeature', $request);
 	//echo $request;
 
-	echo 'Map ' . $record->getField('mapNumber') . ' ID: ' . $record->getField('id') . ' ' . $record->getField('date') . ' ' . $record->getField('lat') . ' ' . $record->getField('lng') . ' Type: ' . $record->getField('type') . ' ' . $record->getField('label') . '<hr>';
+	echo 'Map ' . $record->getField('mapNumber') . ' ID: ' . $record->getField('id') . ' ' . $record->getField('date') . ' ' . $record->getField('lat') . ' ' . $record->getField('lon') . ' ' . $record->getField('label') . '<hr>';
+
 }
 
 echo '<form action="post.php" method="POST">
@@ -25,15 +25,11 @@ echo '<form action="post.php" method="POST">
   Label:<br>
   <input type="text" name="label" value="">
   <br>
-  Marker type:<br>
-  <input type="text" name="type" value="">
-  <br>
   lat<br>
-  <input type="number" name="lat" value="">
+  <input type="text" name="lat" value="">
   <br>
-  lng:<br>
-  <input type="number" name="lng" value="">
-  
+  lon:<br>
+  <input type="text" name="lon" value="">
   <br>
   <br>
   <input type="submit" name="submit" value="Submit">
