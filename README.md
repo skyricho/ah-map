@@ -9,7 +9,8 @@
 #### File reference
 ##### features.php
 Retrieves collection of features for the map data layer. [Example google map](https://www.google.com.au/maps/d/u/0/edit?mid=1ctiAekzON8MIwcAOkgkZzQ1SjJRIZtA5&ll=-33.78296625339272%2C151.271711854415&z=17)
-or [this](https://drive.google.com/open?id=1ctiAekzON8MIwcAOkgkZzQ1SjJRIZtA5&usp=sharing).
+or [this](https://drive.google.com/open?id=1ctiAekzON8MIwcAOkgkZzQ1SjJRIZtA5&usp=sharing). Would htis PHP library help? [GeoJson PHP Library](https://github.com/jmikola/geojson)
+
 Four features:
 - Block 1
 - Block 1
