@@ -2,7 +2,7 @@
 include ("dbaccess.php");
 
 if (isset($_GET['map'])) {
-	$request = $fm->newFindCommand('Marker');
+	$request = $fm->newFindCommand('MapFeature');
 	$request->addFindCriterion('mapNumber', $_GET['map']); 
 	$result = $request->execute();
 
