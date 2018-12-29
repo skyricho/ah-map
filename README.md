@@ -15,7 +15,7 @@ or [this](https://drive.google.com/open?id=1ctiAekzON8MIwcAOkgkZzQ1SjJRIZtA5&usp
 - Block 1
 - Meeting Point
 - Block 2
-[Test URL](https://qc.r2labs.com/ah-map/features.php?map=19)
+[Test URL](https://qc.r2labs.com/ah-map/feature.php?map=19)
 
 ##### post.php
 create new feature
