@@ -11,13 +11,15 @@
 
 
 #### Files
+
 ##### features.php
+
 Retrieves collection of features for the map data layer
-Example google map: https://www.google.com.au/maps/d/u/0/edit?mid=1ctiAekzON8MIwcAOkgkZzQ1SjJRIZtA5&ll=-33.78296625339272%2C151.271711854415&z=17
+Example google map: <https://www.google.com.au/maps/d/u/0/edit?mid=1ctiAekzON8MIwcAOkgkZzQ1SjJRIZtA5&ll=-33.78296625339272%2C151.271711854415&z=17>
 4 features
 Block 1
 Block 1
-Test URL: https://qc.r2labs.com/ah-map/features.php?map=19
+Test URL: <https://qc.r2labs.com/ah-map/features.php?map=19>
 
 ###### post.php
 create new feature
@@ -26,12 +28,12 @@ Map number
 Label
 lat
 lon
-Test URL: https://qc.r2labs.com/ah-map/post.php
+Test URL: [https://qc.r2labs.com/ah-map/post.php]
 
 ###### data.json
 Example Feature collection in GeoJsSON
-Test URL: https://qc.r2labs.com/ah-map/data.json
-Tested using http://geojsonlint.com
+Test URL: [https://qc.r2labs.com/ah-map/data.json]
+Tested using [http://geojsonlint.com]
 
 Filemaker Table: MapFeature
 
