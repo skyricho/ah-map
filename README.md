@@ -43,11 +43,6 @@ Fields (or columns):
 [Numbered markers](https://mapicons.mapsmarker.com/numbers-letters/numbers/?style=white), Teapot or [teahouse](https://mapicons.mapsmarker.com/markers/restaurants-bars/bars/tea-house/?custom_color=9ea2a3).
 
 
-#### map-data-layer.html
-Google Maps Tutorial (example)[https://developers.google.com/maps/documentation/javascript/examples/layer-data-style]. Replaced the example GeoJSON file with data.json. Also styled the feature with img/icons/number_1.png.
-
-
-
 #### Road Map
 - save user IPs and Geolocation then display on Google Map
 - Display AtHome Geolocations as a marker (opaque green dot)

@@ -4,16 +4,7 @@ include ("dbaccess.php");
 
 //echo 'foo';
 
-
-
-/*echo 'Map ' . $_GET['map'] . ' Features<br>';
-$records = $result->getRecords();
-foreach($records as $record) {
-    echo $record->getField('id') . ' ' . $record->getField('label') . ' ' . $record->getField('lon') . ' ' . $record->getField('lat') . '<br>';
-}
-echo '<hr>';*/
-function get_map_collections(){
-	if (isset($_GET['map'])) {
+if (isset($_GET['map'])) {
 	$request = $fm->newFindCommand('MapFeature');
 	$request->addFindCriterion('mapNumber', $_GET['map']); 
 	$result = $request->execute();
@@ -29,6 +20,13 @@ function get_map_collections(){
 
 }
 
+/*echo 'Map ' . $_GET['map'] . ' Features<br>';
+$records = $result->getRecords();
+foreach($records as $record) {
+    echo $record->getField('id') . ' ' . $record->getField('label') . ' ' . $record->getField('lon') . ' ' . $record->getField('lat') . '<br>';
+}
+echo '<hr>';*/
+
 $var = array(); 
 $records = $result->getRecords();
 foreach($records as $record) {
@@ -43,6 +41,4 @@ foreach($records as $record) {
 //echo print_r($var);
 header("Content-type: application/json; charset=utf-8");
 echo json_encode($var);
-}
-
 ?>
