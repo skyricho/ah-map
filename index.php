@@ -1,0 +1,116 @@
+  <?php 
+  include_once 'feature.php';
+      echo     // include_once 'feature.php';
+ ;exit;
+    ?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #info-box {
+        background-color: white;
+        border: 1px solid black;
+        bottom: 30px;
+        height: 20px;
+        padding: 10px;
+        position: absolute;
+        left: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Hello World!</p>
+  </body>
+  
+    <div id="map"></div>
+    <div id="info-box">?</div>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 20,
+          center: new google.maps.LatLng(-33.78482,151.28665),
+          mapTypeId: 'roadmap'
+        });
+        map.data.loadGeoJson('data.json');
+        // Set the global styles.
+        map.data.setStyle({
+          icon: {
+          path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0",
+          //path: "M22-48h-44v43h16l6 5 6-5h16z",
+          fillColor: 'green',
+          fillOpacity: .4,
+          anchor: new google.maps.Point(0,0),
+          strokeWeight: 0,
+          scale: 1
+          }
+        });
+
+        map.data.addListener('click', function(event) {
+          map.data.overrideStyle(event.feature, {strokeWeight: 8});
+          document.getElementById('info-box').textContent = 
+          event.feature.getProperty('id');
+        });
+
+
+
+        // Set mouseover event for each feature.
+        //map.data.addListener('click', function(event) {
+          //map.data.overrideStyle(event.feature, {fillColor: 'red'});
+          //document.getElementById('info-box').textContent = 
+          //event.feature.getProperty('id');
+        //});
+
+        // Set the fill color to red when the feature is clicked.
+        // Stroke weight remains 3.
+        //map.data.addListener('click', function(event) {
+        //   map.data.overrideStyle(event.feature, {fillColor: 'red'});
+        //});
+
+        /*map.data.setStyle({
+          //icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+          //icon:{"data:image/svg+xml;utf8,<svg><rect stroke='black' fill='black' width='50' height='25'/></svg>"},
+          icon: {
+            //path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0",
+            path: "M22-48h-44v43h16l6 5 6-5h16z",
+            fillColor: 'white',
+            fillOpacity: 1,
+            anchor: new google.maps.Point(0,0),
+            strokeWeight: 1,
+            scale: .5
+          },
+          //title: 'foo',
+
+        });*/
+      }
+
+      // Loop through the results array and place a marker for each
+      // set of coordinates.
+      window.eqfeed_callback = function(results) {
+        for (var i = 0; i < results.features.length; i++) {
+          var coords = results.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+          });
+        }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpVcC59vC1O0WNy72B8HRJjWfCosGi3A8&callback=initMap">
+    </script>
+  </body>
+</html>
