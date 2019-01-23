@@ -1,4 +1,5 @@
-<?php 
+<?php
+ini_set('display_errors', 1);
 include ("dbaccess.php");
 
 if (isset($_GET['map'])) {
@@ -16,126 +17,78 @@ if (isset($_GET['map'])) {
 		$result = $request->execute();
 }
 
-echo '
-{
-	"type": "FeatureCollection",
-    "features": [';
+
+$foo2 = array();
 $records = $result->getRecords();
-$last_record = array_pop($records);
+//$last_record = array_pop($records);
 foreach($records as $record) {
-	// replace with geojson.php soon. https://gist.github.com/wboykinm/5730504
 	// test with http://geojsonlint.com
-    echo '
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [' .
-                    $record->getField('lng') . ',' . 
-				    $record->getField('lat') . '
-                ]
-            },
-            "properties": {
-                "id": "' . $record->getField('id') . '",
-				"type": "' . $record->getField('type') . '",
-				"label": "' . $record->getField('label') . '"
-            }
-        },';
+    $foo2 [] = array(
+        "type" => "Feature", 
+        "geometry" => array(
+            "type" => "Point", 
+            "coordinates" => array(
+                $record->getField('lon'), 
+                $record->getField('lat')
+            )
+        ),
+        "properties" => array(
+            "id" => $record->getField('id'),
+            "imgFilename" => $record->getField('imgFilename')
+        )
+    );
+}
+//echo json_encode($foo2, JSON_NUMERIC_CHECK) . '<br><br>'; // JSON_NUMERIC_CHECK to prevent integers converting to strings
+//echo print_r($foo2) . '<br><br>';
+
+if (isset($_GET['map'])) {
+    $request = $fm->newFindCommand('AddressList');
+    $request->addFindCriterion('Map', $_GET['map']);
+    $request->addFindCriterion('isHome', 'ah');
+    $result = $request->execute();
+
+    if (FileMaker::isError($result))
+    {
+    echo "<p>Error: " . $result->getMessage() . "</p>"; exit;
+    }
 }
 
-foreach($last_record as $record) {
-    echo '
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [' .
-                    $record->getField('lng') . ',' . 
-				    $record->getField('lat') . '
-                ]
-            },
-            "properties": {
-                "id": "' . $record->getField('id') . '",
-				"type": "' . $record->getField('type') . '",
-				"label": "' . $record->getField('label') . '"
-            }
-        }';
+//echo print_r($foo2);
+//echo '<br><br>';
+
+$atHomes = array();
+$records = $result->getRecords();
+foreach($records as $record) {
+    // test with http://geojsonlint.com
+    $atHomes [] = array(
+        "type" => "Feature", 
+        "geometry" => array(
+            "type" => "Point", 
+            "coordinates" => array(
+                $record->getField('lat'), 
+                $record->getField('lng')
+            )
+        ),
+        "properties" => array(
+            "id" => $record->getField('recID'),
+            "imgFilename" => $record->getField('imgFilename')
+        )
+    );
 }
 
-echo '
-    ]
-}';
+//echo print_r($atHomes);
 
-//$jsondata = json_encode($jsondata, JSON_PRETTY_PRINT);
-//echo $jsondata
+$foo4 = array_merge($foo2,$atHomes);
+
+//echo '<br><br>';
+//echo print_r($foo4);
+
+$foo3 = array(
+    "type" => "FeatureCollection",
+    "features" => $foo4
+);
+header("Content-Type: application/json; charset=UTF-8");
+echo json_encode($foo3, JSON_NUMERIC_CHECK); // JSON_NUMERIC_CHECK to prevent integers 
+
 ?>
 
-<!-- 
-<p>Example geojson output<br>
-  <code>
-{
-  "type": "Feature",
-  "geometry": {
-    "type": "Point",
-    "coordinates": [125.6, 10.1]
-  },
-  "properties": {
-    "name": "Dinagat Islands"
-  }
-}
-  </code>
-</p>
-
-
-GeoJSONLint
-{
-	"type": "FeatureCollection",
-    "features": [
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -80.870885,
-                    35.215151
-                ]
-            },
-            "properties": {
-                "name": "ABBOTT NEIGHBORHOOD PARK",
-                "address": "1300  SPRUCE ST"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -80.837753,
-                    35.249801
-                ]
-            },
-            "properties": {
-                "name": "DOUBLE OAKS CENTER",
-                "address": "1326 WOODWARD AV"
-            }
-        },
-
-    ]
-}
-
-
-{
-			"type": "Feature",
-			"geometry": {
-				"type": "Point",
-				"coordinates": [' . 
-				    $record->getField('lng') . ',' . 
-				    $record->getField('lat') . '
-				    ]
-				},
-			"properties": {
-				"id": "' . $record->getField('id') . '",
-				"type": "' . $record->getField('type') . '"
-			}
-		}
--->
