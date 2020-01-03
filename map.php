@@ -44,13 +44,13 @@ foreach($records as $record) {
 if (isset($_GET['map'])) {
     $request = $fm->newFindCommand('AddressList');
     $request->addFindCriterion('Map', $_GET['map']);
-    $request->addFindCriterion('isHome', 'ah');
+    //$request->addFindCriterion('isHome', 'ah');
     $result = $request->execute();
 
-    if (FileMaker::isError($result))
-    {
+    // Diable trapping for errors 
+    /*if (FileMaker::isError($result)) {
     echo "<p>Error: " . $result->getMessage() . "</p>"; exit;
-    }
+    }*/
 }
 
 //echo print_r($foo2);
